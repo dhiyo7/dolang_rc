@@ -59,6 +59,10 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:3.10.0"
     implementation "com.squareup.okhttp3:logging-interceptor:3.4.1"
 
+    // photo view
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+
     //ui
 //    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
@@ -68,8 +72,6 @@ dependencies {
     //Text Description
     implementation 'com.uncopt:android.justified:1.0'
 
-    // photo view
-//    implementation 'com.github.chrisbanes:PhotoViewActivity:2.3.0'
 
 //    BottomNav
     implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
