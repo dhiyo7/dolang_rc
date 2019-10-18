@@ -1,11 +1,16 @@
 package com.example.dolang.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.dolang.Model.Tour;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -157,6 +162,24 @@ public class DetailActivity extends AppCompatActivity {
         pano.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+                Sensor gyro = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+                if(gyro == null){
+                    AlertDialog.Builder b = new AlertDialog.Builder(DetailActivity.this);
+                    b.setMessage("Aplikasi ini memerlukan Gyroscope dan nampaknya perangkat anda tidak mendukung");
+                    b.setPositiveButton("Mengerti", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent it = new Intent(DetailActivity.this, PanoramaActivity.class);
+                            it.putParcelableArrayListExtra("PANORAMAS", (ArrayList<? extends Parcelable>) kategori.getPanorama());
+                            startActivity(it);
+                        }
+                    });
+                    AlertDialog a = b.create();
+                    a.show();
+                    return;
+                }
+
                 Intent it = new Intent(DetailActivity.this, PanoramaActivity.class);
                 it.putParcelableArrayListExtra("PANORAMAS", (ArrayList<? extends Parcelable>) kategori.getPanorama());
                 startActivity(it);

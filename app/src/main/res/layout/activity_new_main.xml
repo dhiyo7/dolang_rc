@@ -9,6 +9,7 @@
 
     <com.mancj.materialsearchbar.MaterialSearchBar
         android:paddingTop="20dp"
+        android:elevation="16dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
@@ -22,8 +23,7 @@
         app:mt_navIconEnabled="true"
         android:outlineProvider="bounds"
         app:mt_placeholder="Cari destinasi wisata"
-        tools:ignore="MissingConstraints"
-        />
+        tools:ignore="MissingConstraints" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -43,7 +43,7 @@
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
         android:layout_marginBottom="18dp"
-        android:background="@drawable/rounded_rect_white"
+        android:background="@drawable/rounded_rect_white_2"
         android:elevation="8dp"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,8 +58,9 @@
             app:bt_colorActive="@color/blue_active"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/ic_home"
-            app:bt_shape="@drawable/shop_background_stroke"
-            app:bt_title="Beranda" />
+            app:bt_shape="@drawable/shop_background_stroke_2"
+            app:bt_title="Beranda"
+            app:bt_titleSize="10sp"/>
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_photos"
@@ -69,8 +70,9 @@
             app:bt_colorActive="@color/purple_active"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/ic_kategori"
-            app:bt_shape="@drawable/photos_background_stroke"
-            app:bt_title="Kategori" />
+            app:bt_shape="@drawable/photos_background_stroke_2"
+            app:bt_title="Kategori"
+            app:bt_titleSize="10sp"/>
 
         <com.gauravk.bubblenavigation.BubbleToggleView
             android:id="@+id/m_item_call"
@@ -80,8 +82,9 @@
             app:bt_colorActive="@color/green_active"
             app:bt_colorInactive="@color/default_inactive"
             app:bt_icon="@drawable/ic_profile"
-            app:bt_shape="@drawable/call_background_stroke"
-            app:bt_title="Akun" />
+            app:bt_shape="@drawable/call_background_stroke_2"
+            app:bt_title="Akun"
+            app:bt_titleSize="10sp"/>
 
     </com.gauravk.bubblenavigation.BubbleNavigationLinearView>
 

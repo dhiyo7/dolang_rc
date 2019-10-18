@@ -33,7 +33,7 @@ public class WisataFragment extends Fragment {
     private TourInterface tourInterface;
     private SearchView searchView;
     ProgressBar prograss;
-    RelativeLayout rl_kategori;
+    RelativeLayout rl_kategori, rootErrorView, rootEmptyView;
     private Call<BaseListResponse<Tour>> call;
 
 
@@ -52,6 +52,8 @@ public class WisataFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rv_kategori.setLayoutManager(layoutManager);
         rv_kategori.setHasFixedSize(true);
+        rootEmptyView = view.findViewById(R.id.root_empty_view);
+        rootErrorView =  view.findViewById(R.id.root_error_view);
 //        searchView = view.findViewById(R.id.sv);
 
 //        searchView.setSearchableInfo();
@@ -68,12 +70,25 @@ public class WisataFragment extends Fragment {
                 if(response.isSuccessful()){
                     BaseListResponse bs = response.body();
                     if(bs.getStatus()){
-                        TourList = bs.getData();
-                        adapter = new AdapterKategori(getActivity(), TourList);
-                        rv_kategori.setAdapter(adapter);
+                        if(bs.getData().isEmpty()){
+                            rootErrorView.setVisibility(View.GONE);
+                            rootEmptyView.setVisibility(View.VISIBLE);
+                        }else{
+                            TourList = bs.getData();
+                            adapter = new AdapterKategori(getActivity(), TourList);
+                            rv_kategori.setAdapter(adapter);
+                            rootErrorView.setVisibility(View.GONE);
+                            rootEmptyView.setVisibility(View.GONE);
+                        }
+                    }else{
+                        Toast.makeText(getActivity(), "false", Toast.LENGTH_SHORT).show();
+                        rootErrorView.setVisibility(View.GONE);
+                        rootEmptyView.setVisibility(View.VISIBLE);
                     }
                 }else{
-//                    Toast.makeText(getActivity(), "Cannot fetch data from server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "is not success "+response.code(), Toast.LENGTH_SHORT).show();
+                    rootErrorView.setVisibility(View.VISIBLE);
+                    rootEmptyView.setVisibility(View.GONE);
                 }
                 prograss.setVisibility(View.INVISIBLE);
             }
@@ -81,6 +96,8 @@ public class WisataFragment extends Fragment {
             @Override
             public void onFailure(Call<BaseListResponse<Tour>> call, Throwable t) {
                 prograss.setVisibility(View.INVISIBLE);
+                rootErrorView.setVisibility(View.VISIBLE);
+                rootEmptyView.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "Error : "+ t.toString(), Toast.LENGTH_SHORT).show();
             }
         });

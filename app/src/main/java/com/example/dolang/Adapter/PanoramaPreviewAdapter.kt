@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.dolang.Model.Panorama
 import com.example.dolang.Network.ApiClient
 import com.example.dolang.Panorama.Foto
@@ -24,7 +26,8 @@ class PanoramaPreviewAdapter(private var panos : List<Panorama>, private var con
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         fun bind(pano : Panorama, context: Context){
-            Glide.with(context).load(ApiClient.ENDPOINT+"images/"+pano.path).into(itemView.image_preview)
+            Glide.with(context).load(ApiClient.ENDPOINT+"images/"+pano.path).placeholder(R.drawable.loading_pic)
+                    .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)).into(itemView.image_preview)
             itemView.setOnClickListener {
                 context.startActivity(Intent(context, Foto::class.java).apply {
                     putExtra("URL", ApiClient.ENDPOINT+"images/"+pano.path)

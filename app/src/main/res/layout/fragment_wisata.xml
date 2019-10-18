@@ -28,5 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <include layout="@layout/etc_error_view"/>
+    <include layout="@layout/etc_empty_view"/>
+
 
 </RelativeLayout>
