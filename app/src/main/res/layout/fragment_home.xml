@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuFragment.Home">
+    
+
+    <RelativeLayout
+        android:id="@+id/rlUtama"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--<SearchView-->
+            <!--android:id="@+id/searcview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_margin="15dp"-->
+            <!--android:iconifiedByDefault="true"-->
+            <!--android:queryHint="Search"-->
+            <!--android:elevation="5dp"-->
+            <!--android:background="@drawable/round"></SearchView>-->
+
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnFilter"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Di Sekitar Anda"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <include layout="@layout/bs_near_me"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
